@@ -1,0 +1,5 @@
+prefix: "&a[QuickMenu] &f"
+reload_success: "Configuration reloaded successfully!"
+version_info: "QuickMenu version: {version}"
+no_permission: "You don't have permission to execute this command!"
+menu_not_found: "Menu file {menu} not found!"

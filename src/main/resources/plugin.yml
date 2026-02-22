@@ -1,0 +1,16 @@
+name: QuickMenu
+version: 1.0.0
+main: com.quickmenu.QuickMenu
+api-version: '1.21'
+depend: [floodgate]
+author: QuickMenu
+description: A simple menu plugin for both Bedrock and Java Edition
+
+commands:
+  menu:
+    description: Open the menu
+    usage: /menu
+  quickmenu:
+    description: QuickMenu admin commands
+    usage: /quickmenu <reload|version>
+    permission: quickmenu.admin

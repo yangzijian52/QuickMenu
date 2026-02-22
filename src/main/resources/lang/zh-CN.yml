@@ -1,0 +1,5 @@
+prefix: "&a[QuickMenu] &f"
+reload_success: "配置重载成功！"
+version_info: "QuickMenu 版本: {version}"
+no_permission: "你没有权限执行此命令！"
+menu_not_found: "菜单文件 {menu} 未找到！"

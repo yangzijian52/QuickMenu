@@ -1,0 +1,20 @@
+title: 主菜单
+content: 这是一个主菜单
+menu:
+  - text: 按钮1
+    action: command
+    command: "say 这是按钮1"
+    java_icon:
+      item: diamond
+  
+  - text: 按钮2
+    action: command
+    command: "say 这是按钮2"
+    java_icon:
+      item: egg
+  
+  - text: 进入demo菜单
+    action: menu
+    menu: demo
+    java_icon:
+      item: gold_ingot

@@ -1,0 +1,8 @@
+title: Demo菜单
+content: 这是一个示例菜单
+menu:
+  - text: 返回主菜单
+    action: menu
+    menu: main
+    java_icon:
+      item: barrier
