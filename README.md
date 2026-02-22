@@ -2,6 +2,14 @@
 
 一个同时支持基岩版和Java版的入门级菜单插件。
 
+## 声明
+
+本插件是受 [Asurin219](https://www.minebbs.com/resources/quickmenu.7649/) 在 MINEBBS 发布的 QuickMenu 插件启发而开发的开源版本。原作者的插件未开源，本项目为独立重新实现的同名插件。
+
+感谢原作者 Asurin219 提供的创意灵感！
+
+原插件地址：https://www.minebbs.com/resources/quickmenu.7649/
+
 ## 特性
 
 - 🎮 同时支持 Minecraft Java版 和 基岩版
@@ -73,6 +81,7 @@ menu:                      # 菜单项列表
     java_icon:
       item: gold_ingot
 ```
+
 
 ### 命令类型
 
