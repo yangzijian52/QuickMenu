@@ -1,5 +1,5 @@
 name: QuickMenu
-version: 1.0.0
+version: ${project.version}
 main: com.quickmenu.QuickMenu
 api-version: '1.21'
 depend: [floodgate]
