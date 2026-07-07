@@ -14,16 +14,15 @@ import java.util.Map;
 import java.util.UUID;
 
 public class MenuClickListener implements Listener {
-    private static final Map<UUID, MenuConfig> activeMenus = new HashMap<>();
-    private static boolean registered = false;
+    private static final Map<UUID, MenuConfig> ACTIVE_MENUS = new HashMap<>();
+    private final QuickMenu plugin;
+
+    public MenuClickListener(QuickMenu plugin) {
+        this.plugin = plugin;
+    }
 
     public static void registerMenu(Player player, MenuConfig menu) {
-        activeMenus.put(player.getUniqueId(), menu);
-        
-        if (!registered) {
-            QuickMenu.getInstance().getServer().getPluginManager().registerEvents(new MenuClickListener(), QuickMenu.getInstance());
-            registered = true;
-        }
+        ACTIVE_MENUS.put(player.getUniqueId(), menu);
     }
 
     @EventHandler
@@ -32,27 +31,29 @@ public class MenuClickListener implements Listener {
             return;
         }
 
-        MenuConfig menu = activeMenus.get(player.getUniqueId());
+        MenuConfig menu = ACTIVE_MENUS.get(player.getUniqueId());
         if (menu == null) {
             return;
         }
 
         event.setCancelled(true);
-
         int slot = event.getRawSlot();
-        if (slot < 0 || slot >= menu.getItems().size()) {
+        if (slot < 0 || slot >= menu.getSize()) {
             return;
         }
 
         MenuItem item = menu.getItems().get(slot);
-        player.closeInventory();
-        MenuUtil.handleMenuAction(player, item);
+        if (item == null) {
+            return;
+        }
+
+        plugin.getServer().getScheduler().runTask(plugin, () -> MenuUtil.handleMenuAction(player, item));
     }
 
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         if (event.getPlayer() instanceof Player player) {
-            activeMenus.remove(player.getUniqueId());
+            ACTIVE_MENUS.remove(player.getUniqueId());
         }
     }
 }

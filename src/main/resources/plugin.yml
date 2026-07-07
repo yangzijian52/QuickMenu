@@ -2,15 +2,22 @@ name: QuickMenu
 version: ${project.version}
 main: com.quickmenu.QuickMenu
 api-version: '1.21'
-depend: [floodgate]
+softdepend: [floodgate]
 author: QuickMenu
-description: A simple menu plugin for both Bedrock and Java Edition
+description: Dual-platform PlayerMenu-style menu plugin for Paper 26.2
 
 commands:
   menu:
-    description: Open the menu
-    usage: /menu
+    description: Open a menu
+    usage: /menu [menu]
+    aliases: [playermenu]
   quickmenu:
     description: QuickMenu admin commands
-    usage: /quickmenu <reload|version>
-    permission: quickmenu.admin
+    usage: /quickmenu <open|reload|close|getMaterial|version>
+    permission: quickmenu.use
+
+permissions:
+  quickmenu.use:
+    default: true
+  quickmenu.admin:
+    default: op

@@ -1,0 +1,26 @@
+title: "&0服务器菜单"
+size: 27
+openCommand: "servermenu"
+
+menu:
+  back:
+    index: 11
+    name: "&a返回主菜单"
+    material: ARROW
+    commands:
+      - "[open] main"
+  info:
+    index: 13
+    name: "&b服务器信息"
+    material: BOOK
+    lore:
+      - "&7玩家: &f{player}"
+      - "&7这是一个二级菜单示例。"
+    commands:
+      - "[message] &a欢迎来到服务器。"
+  close:
+    index: 15
+    name: "&c关闭"
+    material: BARRIER
+    commands:
+      - "[close]"

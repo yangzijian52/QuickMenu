@@ -1,71 +1,23 @@
 # QuickMenu
 
-一个同时支持 Minecraft Java 版与基岩版的入门级菜单插件。
+QuickMenu 是一款面向 Paper 26.2 的双端玩家菜单插件，功能形态参考 PlayerMenu 文档重新实现：
 
-## 项目说明
+- Java 版玩家通过背包 GUI 展示菜单。
+- 基岩版/手机端玩家通过 Floodgate 发送表单菜单。
+- 支持每个菜单独立 `openCommand`，例如 `/cd`。
+- 管理命令统一使用 `/quickmenu`。
+- 支持右键菜单物品打开主菜单。
+- 支持按槽位配置按钮、材质、名称、Lore、发光、权限和点击动作。
+- 支持多级菜单跳转。
 
-本插件是基于同名创意重新实现的开源版本，面向 Paper 服务器使用，Java 玩家可使用 GUI 菜单，基岩版玩家可通过 Floodgate 表单打开菜单。
+本项目没有复制 PlayerMenu 源码，只按公开文档实现相似的菜单功能，并保留原 QuickMenu 的双端交互链路。
 
 ## 运行要求
 
 - Java 25+
-- Paper 26.1.x
-- Floodgate
-
-## 当前版本
-
-- 插件版本：`1.0.1`
-- Paper API：`26.1.1.build.20-alpha`
-
-## 当前状态
-
-- 当前仅确认可在 `Java 25` 下编译通过
-- 暂未完成服务端完整可用性测试，暂时不建议直接投入正式环境
-- 主要原因是前置依赖 `Floodgate` 还未完成当前测试环境对应版本的联调验证，基岩版菜单链路暂时无法测试
-
-## 主要功能
-
-- 同时支持 Java 版与基岩版玩家
-- 支持多级菜单嵌套
-- 支持玩家命令、OP 命令、控制台命令
-- 支持菜单语言文件与独立菜单配置文件
-
-## 安装方法
-
-1. 先安装 `Floodgate`
-2. 将 `QuickMenu.jar` 放入服务器的 `plugins` 目录
-3. 启动服务器生成配置文件
-4. 按需修改 `config.yml` 与 `menus/*.yml`
-
-## 常用命令
-
-- `/menu`：打开菜单
-- `/quickmenu reload`：重载配置
-- `/quickmenu version`：查看版本
-
-权限节点：
-
-- `quickmenu.admin`
-
-## 配置说明
-
-主配置文件：
-
-- `plugins/QuickMenu/config.yml`
-
-菜单配置目录：
-
-- `plugins/QuickMenu/menus/`
-
-至少需要保留一个主菜单文件 `main.yml`。
-
-## 26.1 升级说明
-
-- 已升级到 `paper-api 26.1.1.build.20-alpha`
-- 编译与运行环境调整为 `Java 25+`
-- `plugin.yml` 版本号改为自动读取 Maven 版本
-- 当前仍处于“待实测”状态，原因是 `Floodgate` 相关链路暂未完成验证
-- 详细说明见 [docs/PAPER-26.1-UPGRADE.md](docs/PAPER-26.1-UPGRADE.md)
+- Paper API `26.2.build.53-alpha`
+- Paper 26.2 服务端
+- Floodgate。未安装时 Java 菜单仍可用，手机端表单不可用。
 
 ## 构建
 
@@ -73,10 +25,81 @@
 mvn clean package
 ```
 
-构建产物默认位于：
+产物：
 
-- `target/QuickMenu.jar`
+```text
+target/QuickMenu.jar
+```
 
-## 许可证
+## 安装
 
-MIT
+1. 先安装 Floodgate。
+2. 将 `target/QuickMenu.jar` 放入服务端 `plugins` 目录。
+3. 启动服务端生成默认配置。
+4. 修改 `plugins/QuickMenu/menus/*.yml` 后执行 `/quickmenu reload`。
+
+## 命令
+
+完整指令和参数说明见 [docs/COMMANDS.md](docs/COMMANDS.md)。
+
+| 命令 | 权限 | 说明 |
+| --- | --- | --- |
+| `/menu [菜单]` | `quickmenu.use` | 打开主菜单或指定菜单 |
+| `/quickmenu open [菜单]` | `quickmenu.use` | 打开主菜单或指定菜单 |
+| `/quickmenu clock [菜单]` | `quickmenu.use` | 获取菜单打开物品 |
+| `/quickmenu getMaterial` | `quickmenu.use` | 查看手中物品材质名 |
+| `/quickmenu reload` | `quickmenu.admin` | 重载配置 |
+| `/quickmenu adminOpen <玩家> [菜单]` | `quickmenu.admin` | 为指定玩家打开菜单 |
+| `/quickmenu close [玩家]` | `quickmenu.use` / `quickmenu.admin` | 关闭自己或指定玩家菜单 |
+
+## 菜单配置示例
+
+```yaml
+title: "&0玩家菜单"
+size: 54
+permission: ""
+openCommand: "cd"
+
+openItem:
+  enable: true
+  material: CLOCK
+  name: "&a玩家菜单 &7(右键)"
+  slot: 8
+
+menu:
+  spawn:
+    index: 20
+    name: "&a返回主城"
+    material: GRASS_BLOCK
+    lore:
+      - "&7点击执行 &f/spawn"
+    commands:
+      - "[command] spawn"
+```
+
+## 支持的点击动作
+
+```text
+[command] spawn        玩家身份执行命令
+[console] say {player} 控制台执行命令
+[op] gamemode creative 临时 OP 执行命令
+[message] &a文本       给玩家发送消息
+[open] server          打开另一个菜单
+[close]                关闭菜单
+[sound] UI_BUTTON_CLICK 播放音效
+```
+
+支持占位符：
+
+```text
+{player}
+%player_name%
+%player%
+```
+
+## 默认菜单
+
+- `menus/main.yml`：主菜单，默认打开命令 `/cd`。
+- `menus/server.yml`：二级菜单，默认打开命令 `/servermenu`。
+
+Java 玩家会看到 54 格/27 格背包 GUI；Floodgate 玩家会收到同一菜单转换后的手机端表单，点击按钮后执行相同的 `commands` 动作。

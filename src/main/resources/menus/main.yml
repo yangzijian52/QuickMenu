@@ -1,20 +1,111 @@
-title: 主菜单
-content: 这是一个主菜单
+title: "&0玩家菜单"
+size: 54
+permission: ""
+openCommand: "cd"
+
+openItem:
+  enable: true
+  material: CLOCK
+  name: "&a玩家菜单 &7(右键)"
+  slot: 8
+
 menu:
-  - text: 按钮1
-    action: command
-    command: "say 这是按钮1"
-    java_icon:
-      item: diamond
-  
-  - text: 按钮2
-    action: command
-    command: "say 这是按钮2"
-    java_icon:
-      item: egg
-  
-  - text: 进入demo菜单
-    action: menu
-    menu: demo
-    java_icon:
-      item: gold_ingot
+  0:
+    index: 0
+    name: "&8边框"
+    material: BLACK_STAINED_GLASS_PANE
+    hideFlag: true
+  1:
+    index: 1
+    name: "&8边框"
+    material: BLACK_STAINED_GLASS_PANE
+    hideFlag: true
+  2:
+    index: 2
+    name: "&8边框"
+    material: BLACK_STAINED_GLASS_PANE
+    hideFlag: true
+  3:
+    index: 3
+    name: "&8边框"
+    material: BLACK_STAINED_GLASS_PANE
+    hideFlag: true
+  4:
+    index: 4
+    name: "&b&l玩家菜单"
+    material: NETHER_STAR
+    isEnchant: true
+    hideFlag: true
+    lore:
+      - "&7欢迎你，&f{player}"
+      - "&7点击下方按钮执行功能。"
+  5:
+    index: 5
+    name: "&8边框"
+    material: BLACK_STAINED_GLASS_PANE
+    hideFlag: true
+  6:
+    index: 6
+    name: "&8边框"
+    material: BLACK_STAINED_GLASS_PANE
+    hideFlag: true
+  7:
+    index: 7
+    name: "&8边框"
+    material: BLACK_STAINED_GLASS_PANE
+    hideFlag: true
+  8:
+    index: 8
+    name: "&8边框"
+    material: BLACK_STAINED_GLASS_PANE
+    hideFlag: true
+  spawn:
+    index: 20
+    name: "&a返回主城"
+    material: GRASS_BLOCK
+    lore:
+      - "&7点击执行 &f/spawn"
+    commands:
+      - "[command] spawn"
+  tpa:
+    index: 22
+    name: "&e传送请求"
+    material: ENDER_PEARL
+    lore:
+      - "&7打开传送帮助。"
+    commands:
+      - "[message] &a使用 /tpa <玩家> 发送传送请求。"
+      - "[close]"
+  server:
+    index: 24
+    name: "&6服务器菜单"
+    material: CHEST
+    lore:
+      - "&7打开二级菜单。"
+    commands:
+      - "[open] server"
+  website:
+    index: 30
+    name: "&b服务器官网"
+    material: PAPER
+    lore:
+      - "&7点击查看官网地址。"
+    commands:
+      - "[message] &b官网: https://example.com"
+      - "[close]"
+  day:
+    index: 32
+    name: "&e设置白天"
+    material: CLOCK
+    permission: "quickmenu.admin"
+    lore:
+      - "&7管理员按钮。"
+    commands:
+      - "[console] time set day"
+      - "[message] &a已设置为白天。"
+  close:
+    index: 49
+    name: "&c关闭菜单"
+    material: BARRIER
+    commands:
+      - "[close]"

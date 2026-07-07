@@ -1,2 +1,2 @@
 language: zh-CN
-trigger_item: "CLOCK"
+give-open-item-on-join: true

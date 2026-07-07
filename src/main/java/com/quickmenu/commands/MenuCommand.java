@@ -17,10 +17,11 @@ public class MenuCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
+            sender.sendMessage("Only players can open menus.");
             return true;
         }
 
-        MenuUtil.openMenu(player, "main");
+        MenuUtil.openMenu(player, args.length > 0 ? args[0] : null);
         return true;
     }
 }

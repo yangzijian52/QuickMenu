@@ -1,37 +1,86 @@
 package com.quickmenu.models;
 
+import java.util.List;
+
 public class MenuItem {
-    private final String text;
-    private final String action;
-    private final String command;
-    private final String nextMenu;
-    private final String javaItem;
+    private final int slot;
+    private final String name;
+    private final String material;
+    private final int amount;
+    private final List<String> lore;
+    private final List<String> commands;
+    private final boolean glow;
+    private final boolean hideFlags;
+    private final Integer customModelData;
+    private final String headOwner;
+    private final String permission;
 
-    public MenuItem(String text, String action, String command, String nextMenu, String javaItem) {
-        this.text = text;
-        this.action = action;
-        this.command = command;
-        this.nextMenu = nextMenu;
-        this.javaItem = javaItem;
+    public MenuItem(
+            int slot,
+            String name,
+            String material,
+            int amount,
+            List<String> lore,
+            List<String> commands,
+            boolean glow,
+            boolean hideFlags,
+            Integer customModelData,
+            String headOwner,
+            String permission) {
+        this.slot = slot;
+        this.name = name;
+        this.material = material;
+        this.amount = amount;
+        this.lore = lore;
+        this.commands = commands;
+        this.glow = glow;
+        this.hideFlags = hideFlags;
+        this.customModelData = customModelData;
+        this.headOwner = headOwner;
+        this.permission = permission;
     }
 
-    public String getText() {
-        return text;
+    public int getSlot() {
+        return slot;
     }
 
-    public String getAction() {
-        return action;
+    public String getName() {
+        return name;
     }
 
-    public String getCommand() {
-        return command;
+    public String getMaterial() {
+        return material;
     }
 
-    public String getNextMenu() {
-        return nextMenu;
+    public int getAmount() {
+        return amount;
     }
 
-    public String getJavaItem() {
-        return javaItem;
+    public List<String> getLore() {
+        return lore;
+    }
+
+    public List<String> getCommands() {
+        return commands;
+    }
+
+    public boolean isGlow() {
+        return glow;
+    }
+
+    public boolean isHideFlags() {
+        return hideFlags;
+    }
+
+    public Integer getCustomModelData() {
+        return customModelData;
+    }
+
+    public String getHeadOwner() {
+        return headOwner;
+    }
+
+    public String getPermission() {
+        return permission;
     }
 }
