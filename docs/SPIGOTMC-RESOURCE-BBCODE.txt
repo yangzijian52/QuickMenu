@@ -1,0 +1,148 @@
+[CENTER][SIZE=7][B]QuickMenu Documentation[/B][/SIZE][/CENTER]
+
+[COLOR=#ff4d4d][B]Language notice:[/B][/COLOR] The SpigotMC resource page, documentation and support channel are English-only. Chinese-language support is not provided on SpigotMC.
+
+[SIZE=5][B]Requirements[/B][/SIZE]
+[LIST]
+[*]Paper 26.2
+[*]Java 25 or newer
+[*]Floodgate 2.x is optional but required for Bedrock/mobile form menus
+[*]Successfully tested on a live Paper 26.2 server
+[*]Successfully tested with Bedrock/mobile players through Floodgate
+[/LIST]
+
+[SIZE=5][B]Installation[/B][/SIZE]
+[LIST=1]
+[*]Stop the server.
+[*]Install Floodgate if you need Bedrock/mobile form menus.
+[*]Place QuickMenu.jar in the server plugins directory.
+[*]Start the Paper 26.2 server.
+[*]Edit plugins/QuickMenu/config.yml and plugins/QuickMenu/menus/*.yml.
+[*]Run /quickmenu reload after changing configuration files.
+[/LIST]
+
+[SIZE=5][B]Player Commands[/B][/SIZE]
+[LIST]
+[*]/menu - open the main menu
+[*]/menu <menu> - open a specific menu file, without the .yml suffix
+[*]/playermenu - alias of /menu
+[*]Configured openCommand values, such as /cd or /servermenu
+[/LIST]
+
+[SIZE=5][B]Admin Commands[/B][/SIZE]
+[LIST]
+[*]/quickmenu - show help
+[*]/quickmenu open - open the main menu
+[*]/quickmenu open <menu> - open a specific menu
+[*]/quickmenu clock - receive the main menu opener item
+[*]/quickmenu clock <menu> - receive an opener item for a specific menu
+[*]/quickmenu item <menu> - alias of /quickmenu clock <menu>
+[*]/quickmenu getMaterial - show the Bukkit material name of the item in your main hand
+[*]/quickmenu close - close your current menu
+[*]/quickmenu close <player> - close another player's menu
+[*]/quickmenu adminOpen <player> - open the main menu for another player
+[*]/quickmenu adminOpen <player> <menu> - open a specific menu for another player
+[*]/quickmenu reload - reload config.yml, language files and menu files
+[*]/quickmenu version - show plugin version
+[/LIST]
+
+[SIZE=5][B]Aliases[/B][/SIZE]
+[LIST]
+[*]/playermenu is an alias of /menu.
+[*]Each menu can define its own openCommand, for example openCommand: "cd" creates /cd.
+[/LIST]
+
+[SIZE=5][B]Permissions[/B][/SIZE]
+[LIST]
+[*]quickmenu.use - use normal menu commands - default: everyone
+[*]quickmenu.admin - reload, open menus for other players and close other players' menus - default: OP
+[*]Menu-level permission values can restrict entire menu files.
+[*]Button-level permission values can restrict individual buttons.
+[/LIST]
+
+[SIZE=5][B]Main Workflow[/B][/SIZE]
+[LIST=1]
+[*]Players run /menu, /playermenu, /quickmenu open or a configured openCommand.
+[*]Java Edition players receive an inventory GUI.
+[*]Floodgate Bedrock/mobile players receive a SimpleForm menu.
+[*]Clicking a configured button executes its commands in order.
+[*]The [open] action can move the player into another menu file.
+[/LIST]
+
+[SIZE=5][B]Configuration Files[/B][/SIZE]
+[LIST]
+[*]plugins/QuickMenu/config.yml - global settings
+[*]plugins/QuickMenu/lang/zh-CN.yml - default Chinese messages
+[*]plugins/QuickMenu/lang/en-US.yml - English messages
+[*]plugins/QuickMenu/menus/main.yml - default main menu
+[*]plugins/QuickMenu/menus/*.yml - additional menu files
+[/LIST]
+
+[SIZE=5][B]Common Menu Configuration[/B][/SIZE]
+[CODE]title: "&0Main Menu"
+size: 54
+permission: ""
+openCommand: "cd"
+
+openItem:
+  enable: true
+  material: CLOCK
+  name: "&aMenu &7(Right Click)"
+  slot: 8
+
+menu:
+  spawn:
+    index: 20
+    name: "&aSpawn"
+    material: GRASS_BLOCK
+    lore:
+      - "&7Click to run /spawn"
+    commands:
+      - "[command] spawn"[/CODE]
+
+[SIZE=5][B]Supported Button Actions[/B][/SIZE]
+[LIST]
+[*][command] spawn - run a player command
+[*][console] give {player} diamond 1 - run a console command
+[*][op] fly - temporarily run a command with OP permission
+[*][message] &aHello - send a colored message to the player
+[*][open] server - open another menu
+[*][close] - close the menu
+[*][sound] UI_BUTTON_CLICK - play a sound
+[/LIST]
+
+[SIZE=5][B]Placeholders[/B][/SIZE]
+[LIST]
+[*]{player} - player name
+[*]%player_name% - player name
+[*]%player% - player name
+[/LIST]
+
+[SIZE=5][B]Data Storage and Backup[/B][/SIZE]
+QuickMenu does not create a database and does not store economy or transaction data. Back up plugins/QuickMenu/ before editing menu files or replacing the jar. The important files are config.yml, lang/*.yml and menus/*.yml.
+
+[SIZE=5][B]Upgrading[/B][/SIZE]
+[LIST=1]
+[*]Stop the server.
+[*]Back up plugins/QuickMenu/.
+[*]Replace the old jar with the new QuickMenu.jar.
+[*]Start the server.
+[*]Check the console for QuickMenu startup messages.
+[*]Run /quickmenu reload after manual menu changes.
+[/LIST]
+
+[SIZE=5][B]Known Limits[/B][/SIZE]
+[LIST]
+[*]The plugin targets Paper 26.2 only.
+[*]Spigot compatibility is not tested or claimed.
+[*]Bedrock/mobile form menus require Floodgate.
+[*]Floodgate forms show clickable command buttons; decoration-only GUI items are not shown as buttons.
+[*]Server owners are responsible for safe command configuration, especially [op] actions.
+[/LIST]
+
+[SIZE=5][B]Support[/B][/SIZE]
+[LIST]
+[*][URL=https://github.com/yangzijian52/QuickMenu]Source Code[/URL]
+[*][URL=https://github.com/yangzijian52/QuickMenu/releases]Downloads[/URL]
+[*][URL=https://github.com/yangzijian52/QuickMenu/issues]Bug Reports and Support[/URL]
+[/LIST]

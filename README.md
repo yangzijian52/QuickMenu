@@ -103,3 +103,11 @@ menu:
 - `menus/server.yml`：二级菜单，默认打开命令 `/servermenu`。
 
 Java 玩家会看到 54 格/27 格背包 GUI；Floodgate 玩家会收到同一菜单转换后的手机端表单，点击按钮后执行相同的 `commands` 动作。
+
+## 发布资料
+
+- [SpigotMC 资源介绍 BBCode](docs/SPIGOTMC-RESOURCE.md)
+- [SpigotMC 完整文档 BBCode](docs/SPIGOTMC-RESOURCE-BBCODE.txt)
+- [SpigotMC 手动发布清单](docs/SPIGOTMC_MANUAL_PUBLISHING.md)
+- [更新日志](CHANGELOG.md)
+- [许可证](LICENSE)
